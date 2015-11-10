@@ -27,3 +27,6 @@ https://coderwall.com/p/siqnjg/disable-tls-on-boot2docker
 
 ## Extract Dockerfile from images
 http://abdelrahmanhosny.com/2015/07/11/how-to-merge-two-docker-images/
+
+## Tag all images to a specfic repository and push it
+<!-- TODO To be defined -->

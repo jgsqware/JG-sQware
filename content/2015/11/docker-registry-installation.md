@@ -1,6 +1,5 @@
 +++
 date = "2015-11-09T15:35:40+01:00"
-draft = true
 title = "Registry - Docker Hub, at Home, for Free!"
 +++
 
@@ -25,19 +24,17 @@ So we will use [docker-compose](Docker-Compose link), Docker-compose help you to
 ```yaml
 # data volume container
 # The container is used to store data, backup and restore
-# TODO: Change to alpine images, to get a smaller one
 storage:
-  image: busybox
+  image: alpine
   volumes:
     - /var/lib/registry
   command: "true"
 
 # Caching Container
 # Should be use to cache registry and enhance velocity of registry
-# TODO: reactivate it
 
-# cache:
-#   image: redis
+cache:
+  image: redis
 
 # Registry container
 # This container handle the registry itself.
@@ -49,7 +46,7 @@ backend:
   ports:
     - 5000:5000
   links:
-    # - cache
+    - cache
     - storage
   volumes_from:
     - storage
@@ -57,23 +54,23 @@ backend:
     SETTINGS_FLAVOR: local
     STORAGE_PATH: /var/lib/registry
     SEARCH_BACKEND: sqlalchemy
-    # CACHE_REDIS_HOST: cache
-    # CACHE_REDIS_PORT: 6379
-    # CACHE_LRU_REDIS_HOST: cache
-    # CACHE_LRU_REDIS_PORT: 6379
+    CACHE_REDIS_HOST: cache
+    CACHE_REDIS_PORT: 6379
+    CACHE_LRU_REDIS_HOST: cache
+    CACHE_LRU_REDIS_PORT: 6379
 
 # Frontend container
 # Deploy a Frontend for registry.
 # You can browse, delete,... your repository
-# Update ENV_DOCKER_REGISTRY_HOST with the ip of your docker-machine: docker-machine ip <MACHINE_NAME>
-# TODO: map URL to backend
 
 frontend:
   image: konradkleine/docker-registry-frontend:v2
   ports:
     - 5080:80
+  links:
+    - backend
   environment:
-    ENV_DOCKER_REGISTRY_HOST: 192.168.99.100
+    ENV_DOCKER_REGISTRY_HOST: backend
     ENV_DOCKER_REGISTRY_PORT: 5000
 
 ```
@@ -94,7 +91,7 @@ Your own docker registry is now available:
 - you can **pull*, **push**, **search** repository on <IP-OF-DOCKER>:5000
 - you can browse the repository on <IP-OF-DOCKER>:5080
 
-<!-- TODO insert UI screenshot-->
+![Docker Registry Frontend](/images/2015/11/docker-registry-frontend.png)
 
 ## Everywhere... You want it everywhere
 
@@ -105,7 +102,7 @@ You need to open the vm port 5080 and 5000 to put your registry on the network.
 # Here, we are creating a rule registry in vm registry, mapping the docker port 5000 to the vm port 5000 on every interface
 
 > VBoxManage controlvm registry natpf1 registry,tcp,0.0.0.0,5000,,5000
-> VBoxManage controlvm registry natpf1 registry,tcp,0.0.0.0,5080,,5080
+> VBoxManage controlvm registry natpf1 registry-ui,tcp,0.0.0.0,5080,,5080
 ```
 
 Now, you access over the network with:
@@ -188,7 +185,7 @@ Now, to **push** images to your own docker registry, you have to tag your image 
 
 ```bash
 # docker tag <IMAGE-NAME:?tag> <REGISTRY-IP>:<PORT>/<IMAGE-NAME:?tag>
-> docker tag registry docker-registry:5000/registry
+> docker tag registry docker-registry:5000/alpine
 
 ```
 
@@ -196,7 +193,10 @@ Now you can push it
 
 ```bash
 # docker push <TAG-WITH-REPO-URL>
-> docker push docker-registry:5000/registry
+> docker push docker-registry:5000/alpine
+The push refers to a repository [docker-registry:5000/alpine] (len: 1)
+f4fddc471ec2: Image successfully pushed
+latest: digest: sha256:347850a844a7b7be3c92a770477827b4a1af922de2190e70b3a8e994051f244a size: 1369
 ```
 
 ### Pull image
@@ -216,7 +216,7 @@ As we have create a [Data Volume Container](http://docs.docker.com/engine/usergu
 We will run a new container and mount volumes from registry data container, then mount the local folder to `/backup` in the container. Then, we will compress the registry data to a tarball.
 
 ```bash
-> docker run --volumes-from registry_storage_1 -v $(pwd):/backup ubuntu sh -c "cd /var/lib/registry && tar cvf /backup/registry-data.tar ."
+> docker run --volumes-from registry_storage_1 -v $(pwd):/backup alpine sh -c "cd /var/lib/registry && tar cvf /backup/registry-data.tar ."
 ```
 
 You have now a file `registry-data.tar` in your local folder.
@@ -230,7 +230,7 @@ So after running the docker-compose, you will have a registry data container but
 We will run a new container and mount volumes from registry data container, and mount the local folder to `/backup`in the container. Then, we will decompress the registry data to the registry data folder.
 
 ```bash
-> docker run --volumes-from registry_storage_1 -v $(pwd):/backup ubuntu sh -c "cd /var/lib/registry && tar xvf /backup/registry-data.tar"
+> docker run --volumes-from registry_storage_1 -v $(pwd):/backup alpine sh -c "cd /var/lib/registry && tar xvf /backup/registry-data.tar"
 ```
 
 New, you will can check your repository UI url, your backuped images are restored.
