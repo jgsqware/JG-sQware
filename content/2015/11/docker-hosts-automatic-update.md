@@ -7,7 +7,7 @@ title = "Docker: Update your hosts with docker-machine ips automatically"
 
 I develop a small script to update your `/etc/hosts` with your docker machine ip and a related resolved name.
 
-You can found in this [update-hosts-docker-machine.sh](INSERT-GIST) or here is it:
+You can found in this [update-hosts-docker-machine.sh](https://gist.github.com/juliengarcia/9a208ca5cf6590b25150) or here is it:
 
 ```bash
 #!/usr/bin/env bash

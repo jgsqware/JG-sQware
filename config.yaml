@@ -3,5 +3,5 @@ languageCode: "en-us"
 title: "Rocket Vision"
 
 params:
-  ProfilePicture: "images/profile.jpg"
+  ProfilePicture: "/images/profile.jpg"
   links:
