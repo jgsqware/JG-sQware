@@ -1,0 +1,6 @@
+box: debian
+build:
+    steps:
+      - arjen/hugo-build@1.6.1:
+        theme: herring-cove
+        flags: --buildDrafts=true
