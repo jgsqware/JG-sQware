@@ -14,3 +14,4 @@ deploy:
       gh_oauth: $GIT_TOKEN
       basedir: public
       repo: juliengarcia.github.io
+      host: juliengarcia
