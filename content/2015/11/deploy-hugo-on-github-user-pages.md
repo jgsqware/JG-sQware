@@ -44,6 +44,7 @@ deploy:
     - leipert/git-push@0.7.6:
       gh_oauth: $GIT_TOKEN
       repo: juliengarcia/juliengarcia.github.io
+      basedir: public
 
 ```
 
