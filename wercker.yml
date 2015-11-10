@@ -4,7 +4,7 @@ build:
     - arjen/hugo-build@1.6.1:
       version: "0.14"
       theme: herring-cove
-      flags: --buildDrafts=true
+      flags: --buildDrafts=true --baseUrl=http://juliengarcia.github.io
 
 deploy:
   steps:
