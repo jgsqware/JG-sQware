@@ -1,5 +1,5 @@
 +++
-date = "2015-11-09T15:35:40+01:00"
+date = "2015-11-10T11:00:00+01:00"
 title = "Registry - Docker Hub, at Home, for Free!"
 +++
 

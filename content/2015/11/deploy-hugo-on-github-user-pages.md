@@ -1,5 +1,5 @@
 +++
-date = "2015-11-10T14:07:50+01:00"
+date = "2015-11-09T08:00:00+01:00"
 title = "Deploy Hugo on Github user pages"
 +++
 

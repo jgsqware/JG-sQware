@@ -1,5 +1,5 @@
 +++
-date = "2015-11-10T12:15:58+01:00"
+date = "2015-11-10T08:00:00+01:00"
 title = "Docker: Installation on OSX"
 +++
 

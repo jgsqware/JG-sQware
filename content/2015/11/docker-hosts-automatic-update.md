@@ -1,5 +1,5 @@
 +++
-date = "2015-11-10T14:04:36+01:00"
+date = "2015-11-10T09:00:00+01:00"
 title = "Docker: Update your hosts with docker-machine ips automatically"
 +++
 
