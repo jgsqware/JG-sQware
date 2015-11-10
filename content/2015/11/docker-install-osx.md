@@ -1,7 +1,6 @@
 +++
 date = "2015-11-10T12:15:58+01:00"
-draft = false
-title = "Install Docker on OSX"
+title = "Docker: Installation on OSX"
 +++
 
 # Let's put some Docker in your OSX
@@ -15,7 +14,7 @@ Docker toolbox install:
  - Docker Kitematic
  - VirtualBox
 
-You can install Docker Toolbox via [Homebrew](Link to homebrew)
+You can install Docker Toolbox via [Homebrew](http://brew.sh/)
 
 ```bash
 > brew install docker-toolbox

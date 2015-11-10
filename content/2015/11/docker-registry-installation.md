@@ -2,7 +2,6 @@
 date = "2015-11-09T15:35:40+01:00"
 draft = true
 title = "Registry - Docker Hub, at Home, for Free!"
-
 +++
 
 # Registry - Docker Hub, at Home, for Free!
