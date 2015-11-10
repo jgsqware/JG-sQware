@@ -8,7 +8,8 @@ build:
 
 deploy:
   steps:
+    - install-packages:
+      packages: git
     - leipert/git-push@0.7.6:
       gh_oauth: $GIT_TOKEN
-      basedir: public
       repo: juliengarcia/juliengarcia.github.io
