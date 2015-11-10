@@ -1,7 +1,7 @@
-baseurl: "http://replace-this-with-your-hugo-site.com/"
+baseurl: "http://juliengarcia.github.io"
 languageCode: "en-us"
-title: "Devops or not devops."
+title: "Rocket Vision"
 
 params:
-  ProfilePicture: "pathOrUrlToImage"
+  ProfilePicture: "static/images/profile.jpg"
   links:
