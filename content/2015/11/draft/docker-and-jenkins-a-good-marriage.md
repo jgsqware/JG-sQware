@@ -99,6 +99,53 @@ We will use the Swarm plugin of Jenkins as Discovery Service.
 The plugin is already installed on the master.
 We need now to start a slave container that will connect to the master and be available to run job.
 
-```bash
+We will use a docker-compose file to make easy de container deployment
+
+```yaml
+swarmslave:
+  build: jenkins-swarm-slave
+  hostname: jenkins_swarm_slave_1
+  environment:
+    - JENKINS_SERVER=<IP-OF-DOCKER-MACHINE-WITH-JENKINS>
+    - JENKINS_PORT=80
+    - JENKINS_LABELS=swarm
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - <PATH-TO-DOCKER>/docker:/bin/docker
+    - /tmp:/tmp
+    - /usr/share/jenkins_slave:/usr/share/jenkins_slave
 
 ```
+
+> Replace <IP-OF-DOCKER-MACHINE-WITH-JENKINS> with the Ip of your jenkins server ip
+
+> Replace <PATH-TO-DOCKER> with the path to your docker client, you can find it with `which docker`
+
+Than run your jenkins slave:
+
+```bash
+> docker-compose build
+
+> docker-compose up -d
+```
+
+Now, if you go to http://<jenkins-url>/computer/, you should see your new slave:
+![Jenkins computer page](/images/2015/11/jenkins-computer-page.png)
+
+## Job configuration for using Jenkins Swarm
+
+1. Create a *Freestyle Job*
+2. Check *Restrict where this project can be run* and write `swarm` as *Label*
+3. Deploy *Advanced Project Options*
+4. Check *Use custom workspace* and write `/usr/share/jenkins_slave` as *Directory*
+5. In *Build Environment*, check *Build inside a Docker container*
+6. Select *Pull docker image from repository* and write your image use to Build
+  - jenkins-slave-nodejs
+  - jenkins-slave-java
+7. 	In *Docker installation*, select *docker*
+8. On *Volumes*, click *Add* and Add
+   ```
+   Path on host: /usr/share/jenkins_slave
+   Path inside container: /usr/share/jenkins_slave
+   ```
+ 9. Add Build step for your build command
