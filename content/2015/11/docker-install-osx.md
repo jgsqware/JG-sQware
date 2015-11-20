@@ -3,11 +3,12 @@ date = "2015-11-10T08:00:00+01:00"
 title = "Docker: Installation on OSX"
 +++
 
-# Let's put some Docker in your OSX
+> Let's put some Docker in your OSX
 
 The easier way to install Docker is with the [Docker Toolbox](https://www.docker.com/docker-toolbox).
 
 Docker toolbox install:
+
  - Docker Client
  - Docker Machine
  - Docker Compose
@@ -42,14 +43,15 @@ default                  virtualbox   Running   tcp://192.168.99.101:2376
 > docker-machine create --driver=virtualbox registry
 ```
 
-To allow your docker-client to speak with your docker daemon inside your docker machine *you follow me, right?*, you need to configure some **environment variables** like `DOCKER_HOST=<IP-OF-VM>`.
+To allow your docker-client to speak with your docker daemon inside your docker machine...  *Huf... you follow me, right?*.
+So, you need to configure some **environment variables** like `DOCKER_HOST=<IP-OF-VM>`.
 
 docker-machine help you on that with:
 
 ```bash
 > eval $(docker-machine env virtual-slave)
 
-# If you want to run connect to your vm with a specific shell you can use --shell=<SHELL-NAME>
+# If you want to run connect to your vm with a specific shell you can use (like the awesome oh-my-zsh) --shell=<SHELL-NAME>
 
 > eval $(docker-machine env virtual-slave --shell=zsh)
 ```

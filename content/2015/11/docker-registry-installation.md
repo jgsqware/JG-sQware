@@ -3,9 +3,11 @@ date = "2015-11-10T11:00:00+01:00"
 title = "Registry - Docker Hub, at Home, for Free!"
 +++
 
-# Registry - Docker Hub, at Home, for Free!
 > Or how to have our docker registry hub locally
 Due to the slow network, we need to find a way to download docker images from local network instead of Docker Hub.
+----
+> When I start writing this article the [Docker Trusted Registry](URL-TO-DOCKER-TRUSTED-REGISTRY) was not released yet.
+> However, you can run it for free locally.
 
 This post is related to OSX docker-machine version. It's almost the same on linux box.
 

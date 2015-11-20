@@ -90,4 +90,15 @@ c80f7f84fed5  docker-registry:5000/d.incubator/jenkins-nginx  "nginx -g 'daemon 
 You can see that the jenkinsmaster_data_1 container is not running.
 Docker Data Volume is not running container. You can view it as a hard drive plug in the container.
 
+You can test the Jenkins installation by accessing to http://<MACHINE-IP>, you should see the Jenkins home page.
+![Jenkins Home Page](/images/2015/11/jenkins-home-page.png)
+
 ## Jenkins Slave - Swarm them and Docker-ception
+
+We will use the Swarm plugin of Jenkins as Discovery Service.
+The plugin is already installed on the master.
+We need now to start a slave container that will connect to the master and be available to run job.
+
+```bash
+
+```

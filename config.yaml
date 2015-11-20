@@ -1,7 +1,11 @@
 baseurl: "http://juliengarcia.github.io"
 languageCode: "en-us"
-title: "Rocket Vision"
+title: "JG sQware"
+theme: herring-cove
 
 params:
   ProfilePicture: "/images/profile.jpg"
   links:
+    Home : "/"
+  twitter: "https://twitter.com/JuGarciaGonzale"
+  github: "https://github.com/juliengarcia"
