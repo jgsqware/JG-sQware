@@ -218,7 +218,7 @@ As we have create a [Data Volume Container](http://docs.docker.com/engine/usergu
 We will run a new container and mount volumes from registry data container, then mount the local folder to `/backup` in the container. Then, we will compress the registry data to a tarball.
 
 ```bash
-> docker run --volumes-from registry_storage_1 -v $(pwd):/backup alpine sh -c "cd /var/lib/registry && tar cvf /backup/registry-data.tar ."
+> docker run --volumes-from registry_storage_1 -v $(pwd):/backup jgsqware/registry-backup
 ```
 
 You have now a file `registry-data.tar` in your local folder.
@@ -232,7 +232,8 @@ So after running the docker-compose, you will have a registry data container but
 We will run a new container and mount volumes from registry data container, and mount the local folder to `/backup`in the container. Then, we will decompress the registry data to the registry data folder.
 
 ```bash
-> docker run --volumes-from registry_storage_1 -v $(pwd):/backup alpine sh -c "cd /var/lib/registry && tar xvf /backup/registry-data.tar"
+# The file need to be named 'registry-data.tar'
+> docker run --volumes-from registry_storage_1 -v $(pwd):/backup jgsqware/registry-restore
 ```
 
 New, you will can check your repository UI url, your backuped images are restored.
