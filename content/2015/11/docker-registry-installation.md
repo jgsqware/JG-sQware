@@ -23,14 +23,13 @@ To start a registry, latest version, simply run
 It will run, but will **not persist** data when the container will stopped.
 So we will use [docker-compose](Docker-Compose link), Docker-compose help you to manage run of multiple container.
 
+We will create first a volume to persist data:
+
+```bash
+> docker volumes create --name registry_data
+```
+
 ```yaml
-# data volume container
-# The container is used to store data, backup and restore
-storage:
-  image: alpine
-  volumes:
-    - /var/lib/registry
-  command: "true"
 
 # Caching Container
 # Should be use to cache registry and enhance velocity of registry
@@ -49,9 +48,8 @@ backend:
     - 5000:5000
   links:
     - cache
-    - storage
-  volumes_from:
-    - storage
+  volumes:
+    - registry_data:/var/lib/registry
   environment:
     SETTINGS_FLAVOR: local
     STORAGE_PATH: /var/lib/registry
@@ -218,7 +216,7 @@ As we have create a [Data Volume Container](http://docs.docker.com/engine/usergu
 We will run a new container and mount volumes from registry data container, then mount the local folder to `/backup` in the container. Then, we will compress the registry data to a tarball.
 
 ```bash
-> docker run --volumes-from registry_storage_1 -v $(pwd):/backup jgsqware/registry-backup
+> docker run -v registry_data:/var/lib/registry -v $(pwd):/backup jgsqware/registry-backup
 ```
 
 You have now a file `registry-data.tar` in your local folder.
@@ -233,7 +231,7 @@ We will run a new container and mount volumes from registry data container, and 
 
 ```bash
 # The file need to be named 'registry-data.tar'
-> docker run --volumes-from registry_storage_1 -v $(pwd):/backup jgsqware/registry-restore
+> docker run -v registry_data:/var/lib/registry -v $(pwd):/backup jgsqware/registry-restore
 ```
 
 New, you will can check your repository UI url, your backuped images are restored.
