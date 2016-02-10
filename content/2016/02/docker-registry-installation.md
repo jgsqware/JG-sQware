@@ -1,7 +1,7 @@
 +++
 date = "2016-02-10T11:00:00+01:00"
 title = "Docker Registry - Docker Hub, at Home, for Free!"
-hashtags = ["docker"] 
+hashtags = ["docker"]
 +++
 
 ### *Or how to have our docker authenticated registry On-Premise*
@@ -230,11 +230,11 @@ CONTAINER ID        IMAGE                 COMMAND                  CREATED      
 
 The created data volume cn be seen by:
 
-'''bash
+```bash
 $ docker volume ls
 DRIVER              VOLUME NAME
 local               authenticatedregistry_registry-data
-'''
+```
 
 
 Your own docker registry is now available:
