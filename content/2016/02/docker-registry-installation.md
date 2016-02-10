@@ -8,9 +8,10 @@ title = "Docker Registry - Docker Hub, at Home, for Free!"
 Let's first take a look on [Docker Registry](https://docs.docker.com/registry/) page:
 
 > You should use the Registry if you want to:
-  - tightly control where your images are being stored
-  - fully own your images distribution pipeline
-  - integrate image storage and distribution tightly into your in-house development workflow
+
+>  - tightly control where your images are being stored
+>  - fully own your images distribution pipeline
+>  - integrate image storage and distribution tightly into your in-house development workflow
 
 So now, how can we deploy our registry, how can I connect to it and manage my images.
 
