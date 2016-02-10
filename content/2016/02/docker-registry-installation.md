@@ -1,6 +1,7 @@
 +++
 date = "2016-02-10T11:00:00+01:00"
 title = "Docker Registry - Docker Hub, at Home, for Free!"
+hashtags = ["docker"] 
 +++
 
 ### *Or how to have our docker authenticated registry On-Premise*
