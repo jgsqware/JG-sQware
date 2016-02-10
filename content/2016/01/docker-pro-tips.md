@@ -1,6 +1,6 @@
 +++
 date = "2016-01-14T08:00:00+01:00"
-title = "Docker Pro Tips
+title = "Docker Pro Tips"
 +++
 
 Docker Daemon
