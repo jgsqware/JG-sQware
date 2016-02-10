@@ -1,5 +1,6 @@
 +++
 date = "2015-12-14T11:00:00+01:00"
+draft = true
 title = "Wecraft and Devops"
 +++
 
@@ -37,14 +38,14 @@ Nginx - Jenkins - Slave
     --engine-opt="cluster-store=consul://<keystore-ip>:8500" \
     --engine-opt="cluster-advertise=eth1:2376" \
     swarm-0
-   
+
    > docker-machine create -d virtualbox \
     --swarm \
     --swarm-discovery="consul://<keystore-ip>:8500" \
     --engine-opt="cluster-store=consul://<keystore-ip>:8500" \
     --engine-opt="cluster-advertise=eth1:2376" \
     swarm-1
-   
+
    > docker-machine create -d virtualbox \
     --swarm \
     --swarm-discovery="consul://<keystore-ip>:8500" \
@@ -67,7 +68,7 @@ Nginx - Jenkins - Slave
 7. Back on swarm master
    ```bash
    > eval $(docker-machine env --swarm swarm-m)
-   ``` 
+   ```
 8. Create Redis Database on node 0
    ```bash
    > docker run -d --name=db --net=my-awesome-network --env="constraint:node==swarm-0" -p 6379:6379 redis
@@ -80,6 +81,3 @@ Nginx - Jenkins - Slave
    ```bash
    > docker run -d --name=web --net=my-awesome-network --env="constraint:node==swarm-2" -p 80:80 jgsqware/nginx-sample:wecraft-15-12-14
    ```
-
-      
-

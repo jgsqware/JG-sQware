@@ -1,3 +1,13 @@
++++
+Categories = []
+Description = ""
+Tags = []
+date = "2015-11-24T15:11:16+01:00"
+title = "rancher jenkins gitlab"
+draft = true
+
++++
+
 # Install Gogs
 
 1. Create volume

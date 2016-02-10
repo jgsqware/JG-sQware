@@ -6,30 +6,31 @@ title = "Docker Pro Tips"
 Docker Daemon
 ----------------------
 
-1. Update Docker Daemon options
+## 1. Update Docker Daemon options
 
-a. Debian
-Docker daemon is run via `systemd`
+###  Debian
 
-Add `/etc/default/docker` in systemd configuration file:
+  Docker daemon is run via `systemd`
 
-```toml
-# In file /lib/systemd/system/docker.service
-[Unit]
-Description=Docker Application Container Engine
-Documentation=https://docs.docker.com
-After=network.target docker.socket
-Requires=docker.socket
+  Add `/etc/default/docker` in systemd configuration file:
 
-[Service]
-EnvironmentFile=-/etc/default/docker
-Type=notify
-ExecStart=/usr/bin/docker daemon -H fd://
-MountFlags=slave
-LimitNOFILE=1048576
-LimitNPROC=1048576
-LimitCORE=infinity
+  ```toml
+  # In file /lib/systemd/system/docker.service
+  [Unit]
+  Description=Docker Application Container Engine
+  Documentation=https://docs.docker.com
+  After=network.target docker.socket
+  Requires=docker.socket
 
-[Install]
-WantedBy=multi-user.target
-```
+  [Service]
+  EnvironmentFile=-/etc/default/docker
+  Type=notify
+  ExecStart=/usr/bin/docker daemon -H fd://
+  MountFlags=slave
+  LimitNOFILE=1048576
+  LimitNPROC=1048576
+  LimitCORE=infinity
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
