@@ -11,6 +11,7 @@ You can find easily a working container for your purpose (eg. database, code ana
 
 Now, you'll love to use it as far is possible in your deployment chain. And probably your company, as my client, doesn't want to have is specific container (with codebase, data,...) exposed and public in the cloud.
 For sure, you can use private repositories to upload your images, but
+
   1. It's **in the cloud**
   2. It's **not free**
 
@@ -18,6 +19,7 @@ My client not use Cloud at all. He always look like for On-Premise.
 Docker offers a complete solution for that: [Docker Datacenter](https://hub.docker.com/enterprise/trial)
 
 So, we are one step further:
+
 1. ~~It's in the cloud~~
 2. It's not free
 
