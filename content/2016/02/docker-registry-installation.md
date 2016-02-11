@@ -4,7 +4,26 @@ title = "Docker Registry - Docker Hub, at Home, for Free!"
 hashtags = ["docker"]
 +++
 
-### *Or how to have our docker authenticated registry On-Premise*
+
+
+Docker containers is everywhere. You can found it on [Docker Hub](https://hub.docker.com), [Quay.io](https://quay.io),...
+You can find easily a working container for your purpose (eg. database, code analysis, compilation). For development, it's perfect.
+
+Now, you'll love to use it as far is possible in your deployment chain. And probably your company, as my client, doesn't want to have is specific container (with codebase, data,...) exposed and public in the cloud.
+For sure, you can use private repositories to upload your images, but
+  1. It's **in the cloud**
+  2. It's **not free**
+
+My client not use Cloud at all. He always look like for On-Premise.
+Docker offers a complete solution for that: [Docker Datacenter](https://hub.docker.com/enterprise/trial)
+
+So, we are one step further:
+1. ~~It's in the cloud~~
+2. It's not free
+
+We will focused now on the second point:
+
+### *How can I have a docker authenticated registry On-Premise, for free?*
 
 Let's first take a look on [Docker Registry](https://docs.docker.com/registry/) page:
 
@@ -388,7 +407,7 @@ $ VBoxManage controlvm registry natpf1 registry,tcp,0.0.0.0,5000,,5000
 ```
 
 Now, you access over the network with:
-- repository: on <IP-OF-OSX/WINDOWS-HOST>:5000
+- repository: on `<IP-OF-OSX/WINDOWS-HOST>:5000`
 
 
 #### Errors... What?
@@ -423,5 +442,15 @@ Now, you access over the network with:
   level=info msg="Daemon has completed initialization"
   level=info msg="Docker daemon" commit=f4bf5c7 execdriver=native-0.2 graphdriver=aufs version=1.8.3
   ```
+
+## What's next?
+
+Now, you have your Authenticated Registry on-Premise. You can save your docker images.
+
+The next step would be:
+  1. Having a GUI for your registry
+  2. Integrate the image build and deploy phase in CI
+  3. Track vulnerabilities in your images
+
 
 ###### This post is inspired by this article: [Creating Private Docker Registry 2.0 with Token Authentication Service](https://the.binbashtheory.com/creating-private-docker-registry-2-0-with-token-authentication-service/)
