@@ -450,6 +450,7 @@ Now, you access over the network with:
 Now, you have your Authenticated Registry on-Premise. You can save your docker images.
 
 The next step would be:
+
   1. Having a GUI for your registry
   2. Integrate the image build and deploy phase in CI
   3. Track vulnerabilities in your images
